@@ -1,23 +1,14 @@
+import os
 import psycopg2
 import streamlit as st
 
 
 def get_connection():
-    import os
     conn_string = os.environ.get("NEON_CONNECTION_STRING") or st.secrets.get("NEON_CONNECTION_STRING")
     return psycopg2.connect(conn_string)
 
 
-Save the file, then in your terminal:
-```
-cd C:\Apps\YC_GTM
-git add .
-git commit -m "fix db connection"
-git push origin master
-
-
 def fetch_top_leads(limit=50):
-    """Fetch top leads ranked by current_score."""
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
@@ -33,7 +24,6 @@ def fetch_top_leads(limit=50):
 
 
 def fetch_recent_signals(limit=20):
-    """Fetch the most recent market signals."""
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
@@ -49,7 +39,6 @@ def fetch_recent_signals(limit=20):
 
 
 def fetch_score_history(lead_id):
-    """Fetch full score history for a specific company."""
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
@@ -67,7 +56,6 @@ def fetch_score_history(lead_id):
 
 
 def fetch_score_over_time(lead_id):
-    """Fetch score timeline for charting."""
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""
@@ -83,7 +71,6 @@ def fetch_score_over_time(lead_id):
 
 
 def fetch_dashboard_stats():
-    """Quick summary stats for the top of the dashboard."""
     conn = get_connection()
     cur = conn.cursor()
 
