@@ -3,8 +3,17 @@ import streamlit as st
 
 
 def get_connection():
-    """Returns a Neon Postgres connection using Streamlit secrets."""
-    return psycopg2.connect(st.secrets["NEON_CONNECTION_STRING"])
+    import os
+    conn_string = os.environ.get("NEON_CONNECTION_STRING") or st.secrets.get("NEON_CONNECTION_STRING")
+    return psycopg2.connect(conn_string)
+
+
+Save the file, then in your terminal:
+```
+cd C:\Apps\YC_GTM
+git add .
+git commit -m "fix db connection"
+git push origin master
 
 
 def fetch_top_leads(limit=50):
