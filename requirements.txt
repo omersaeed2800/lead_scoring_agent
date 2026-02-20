@@ -2,5 +2,5 @@ streamlit
 psycopg2-binary
 pandas
 requests
-google-generativeai
+google-genai
 python-dotenv
