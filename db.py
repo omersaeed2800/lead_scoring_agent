@@ -4,9 +4,8 @@ import streamlit as st
 
 
 def get_connection():
-    conn_string = os.environ.get("NEON_CONNECTION_STRING") or st.secrets.get("NEON_CONNECTION_STRING")
+    conn_string = os.environ.get("NEON_CONNECTION_STRING")
     return psycopg2.connect(conn_string)
-
 
 def fetch_top_leads(limit=50):
     conn = get_connection()
